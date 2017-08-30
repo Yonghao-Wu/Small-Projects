@@ -1,0 +1,9 @@
+C:\Users\YW_ADMIN\Documents\Visual Studio 2015\Projects\Fibonacci\Fibonacci\bin\Debug\Fibonacci.exe.config
+C:\Users\YW_ADMIN\Documents\Visual Studio 2015\Projects\Fibonacci\Fibonacci\bin\Debug\Fibonacci.exe
+C:\Users\YW_ADMIN\Documents\Visual Studio 2015\Projects\Fibonacci\Fibonacci\bin\Debug\Fibonacci.pdb
+C:\Users\YW_ADMIN\Documents\Visual Studio 2015\Projects\Fibonacci\Fibonacci\obj\Debug\Fibonacci.csprojResolveAssemblyReference.cache
+C:\Users\YW_ADMIN\Documents\Visual Studio 2015\Projects\Fibonacci\Fibonacci\obj\Debug\Fibonacci.Form1.resources
+C:\Users\YW_ADMIN\Documents\Visual Studio 2015\Projects\Fibonacci\Fibonacci\obj\Debug\Fibonacci.Properties.Resources.resources
+C:\Users\YW_ADMIN\Documents\Visual Studio 2015\Projects\Fibonacci\Fibonacci\obj\Debug\Fibonacci.csproj.GenerateResource.Cache
+C:\Users\YW_ADMIN\Documents\Visual Studio 2015\Projects\Fibonacci\Fibonacci\obj\Debug\Fibonacci.exe
+C:\Users\YW_ADMIN\Documents\Visual Studio 2015\Projects\Fibonacci\Fibonacci\obj\Debug\Fibonacci.pdb
