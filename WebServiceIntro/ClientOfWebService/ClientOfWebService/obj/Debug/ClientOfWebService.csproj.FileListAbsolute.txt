@@ -1,0 +1,6 @@
+C:\Users\YW_ADMIN\Documents\Visual Studio 2015\Projects\ClientOfWebService\ClientOfWebService\bin\Debug\ClientOfWebService.exe.config
+C:\Users\YW_ADMIN\Documents\Visual Studio 2015\Projects\ClientOfWebService\ClientOfWebService\bin\Debug\ClientOfWebService.exe
+C:\Users\YW_ADMIN\Documents\Visual Studio 2015\Projects\ClientOfWebService\ClientOfWebService\bin\Debug\ClientOfWebService.pdb
+C:\Users\YW_ADMIN\Documents\Visual Studio 2015\Projects\ClientOfWebService\ClientOfWebService\obj\Debug\ClientOfWebService.csprojResolveAssemblyReference.cache
+C:\Users\YW_ADMIN\Documents\Visual Studio 2015\Projects\ClientOfWebService\ClientOfWebService\obj\Debug\ClientOfWebService.exe
+C:\Users\YW_ADMIN\Documents\Visual Studio 2015\Projects\ClientOfWebService\ClientOfWebService\obj\Debug\ClientOfWebService.pdb
