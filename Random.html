@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <style>
+    
+        svg{
+
+            width: 840px; 
+            height: 930px; 
+            background: black; 
+            border: 5px solid black; 
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<p id="tt"></p>
+
+<center>
+    <svg id="mysvg">
+        
+        <g id="pacman">
+            <circle cx="0" cy="0" r="15" fill="yellow" />
+            <polygon id="mouth" points="0,0 -15,-10 -15,10" />
+        </g>
+
+    </svg>
+</center> 
+
+<!-- Script ================================================================= -->
+
+<script>
+
+//Grid walls sent from PHP as JSON
+var obj = JSON.parse('[[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,0,1],[1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,0,1],[1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,0,1],[1,0,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,0,1],[1,0,0,0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0,0,0,1],[1,1,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,1,1],[1,1,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,1,1],[1,1,1,1,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,1,1,1,1,1,1],[1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1],[1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1],[0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0],[1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1],[1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1],[1,1,1,1,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,1,1,1,1,1,1],[1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1],[1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,0,1],[1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,0,1],[1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1],[1,1,1,0,1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,0,1,1,0,1,1,1],[1,1,1,0,1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,0,1,1,0,1,1,1],[1,0,0,0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0,0,0,1],[1,0,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1],[1,0,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]]');
+//g tag in svg
+var pacman = document.getElementById("pacman"); 
+//svg namespace to create the blue walls
+var svgns = "http://www.w3.org/2000/svg";
+//Pacman Left and Right & Up and Down
+var pacmanLR = 1; 
+var pacmanUD = 1; 
+
+//Assignment of blue walls on the grid, whatever is 1 in the 2D array will be filled with a 30x30 pixel blue square
+for(var row = 0; row <31; row++){
+    for(var col = 0; col < 28; col++){
+        
+        if(obj[row][col] == 1){
+            
+            var walls = document.createElementNS(svgns, 'rect'); 
+            walls.setAttributeNS(null, 'x', (30*col)); 
+            walls.setAttributeNS(null, 'y', (30*row));
+            walls.setAttributeNS(null, 'height', '30');
+            walls.setAttributeNS(null, 'width', '30'); 
+            walls.setAttributeNS(null, 'fill', '#0000FF'); 
+            document.getElementById('mysvg').appendChild(walls);
+        }
+        else{
+            
+        }
+
+    }
+}
+
+//starting point
+/*var rect = document.createElementNS(svgns, 'rect'); 
+rect.setAttributeNS(null, 'x', 30); 
+rect.setAttributeNS(null, 'y', 30);
+rect.setAttributeNS(null, 'height', '30');
+rect.setAttributeNS(null, 'width', '30'); 
+rect.setAttributeNS(null, 'fill', '#FFFF00'); 
+document.getElementById('mysvg').appendChild(rect);*/
+
+pacman.setAttribute("transform", "translate(45, 45) rotate(0)"); 
+
+//Start of keyDown
+document.onkeydown = function keydown(e){
+	
+    e = e || window.event; 
+    
+    if(e.keyCode == 87){
+        //keyPress = "up";  
+        if(obj[pacmanUD-1][pacmanLR] == 0){
+            pacmanUD-=1; 
+            //var rect = document.createElementNS(svgns, 'rect'); 
+
+            /*rect.setAttributeNS(null, 'x', (30*pacmanLR)); 
+            rect.setAttributeNS(null, 'y', (30*pacmanUD));
+            rect.setAttributeNS(null, 'height', '30');
+            rect.setAttributeNS(null, 'width', '30'); 
+            rect.setAttributeNS(null, 'fill', '#FFFF00'); 
+            document.getElementById('mysvg').appendChild(rect);*/
+
+            pacman.setAttribute("transform", "translate(" +((pacmanLR*30)+15) + ", " + ((pacmanUD*30)+15) + ") rotate(90)"); 
+        }
+
+ 
+    }
+    else if(e.keyCode == 83){
+        //keyPress = "down"; 
+        if(obj[pacmanUD+1][pacmanLR] == 0){
+            pacmanUD+=1; 
+            //var rect = document.createElementNS(svgns, 'rect'); 
+
+            /*rect.setAttributeNS(null, 'x', (30*pacmanLR)); 
+            rect.setAttributeNS(null, 'y', (30*pacmanUD));
+            rect.setAttributeNS(null, 'height', '30');
+            rect.setAttributeNS(null, 'width', '30'); 
+            rect.setAttributeNS(null, 'fill', '#FFFF00'); 
+            document.getElementById('mysvg').appendChild(rect);*/
+
+            pacman.setAttribute("transform", "translate(" +((pacmanLR*30)+15) + ", " + ((pacmanUD*30)+15) + ") rotate(270)");
+        }
+ 
+
+    }
+    else if(e.keyCode == 65){
+        //keyPress = "left";
+        if(obj[pacmanUD][pacmanLR-1] == 0){
+            pacmanLR-=1; 
+            //var rect = document.createElementNS(svgns, 'rect'); 
+
+            /*rect.setAttributeNS(null, 'x', (30*pacmanLR)); 
+            rect.setAttributeNS(null, 'y', (30*pacmanUD));
+            rect.setAttributeNS(null, 'height', '30');
+            rect.setAttributeNS(null, 'width', '30'); 
+            rect.setAttributeNS(null, 'fill', '#FFFF00'); 
+            document.getElementById('mysvg').appendChild(rect);*/
+
+            pacman.setAttribute("transform", "translate("  +((pacmanLR*30)+15) + ", " + ((pacmanUD*30)+15) + ") rotate(0)");
+            
+            if(pacmanLR == 0){
+                pacmanLR = 28; 
+            }
+        }
+ 
+    }
+    else if(e.keyCode == 68){
+        //keyPress = "right"; 
+        if(obj[pacmanUD][pacmanLR+1] == 0){
+            pacmanLR+=1; 
+            //var rect = document.createElementNS(svgns, 'rect'); 
+
+            /*rect.setAttributeNS(null, 'x', (30*pacmanLR)); 
+            rect.setAttributeNS(null, 'y', (30*pacmanUD));
+            rect.setAttributeNS(null, 'height', '30');
+            rect.setAttributeNS(null, 'width', '30'); 
+            rect.setAttributeNS(null, 'fill', '#FFFF00'); 
+            document.getElementById('mysvg').appendChild(rect);*/
+
+            pacman.setAttribute("transform", "translate(" +((pacmanLR*30)+15) + "," + ((pacmanUD*30)+15) + ") rotate(180)");
+
+            if(pacmanLR == 27){
+                pacmanLR = -1; 
+            }
+        }
+    }
+}
+//End of keyDown
+
+function mainFunction(){
+    //document.getElementById("intoo").innerHTML = "HI"; 
+}
+
+
+//End of keyPress
+mainFunction(); 
+</script> 
+<!-- End of Script ===================================================== -->
+
+</body>
+
+</html>
